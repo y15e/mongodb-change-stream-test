@@ -1,7 +1,8 @@
 import * as mongodb from 'mongodb'
 
 const dbName: string = 'stream-test'
-const mongoUrl: string = 'mongodb://localhost:27017/' + dbName
+const mongoUrl: string = 'mongodb://localhost:27018/' + dbName + '?readPreference=secondaryPreferred'
+
 const mongoOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -19,8 +20,10 @@ async function start() {
 	const collection = db.collection('items')
 	
 	const changeStreamIterator = collection.watch()
-	const next = await changeStreamIterator.next()
-	console.log(next)
+	while (true) {
+	  const next = await changeStreamIterator.next()
+	  console.log(next)
+	}
 	
   } catch (err) {
 	console.dir(err)
