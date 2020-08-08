@@ -19,7 +19,8 @@ replication:
 ```
 $ sudo mkdir /var/lib/mongodb-rs0-0
 $ sudo chown mongodb:daemon /var/lib/mongodb-rs0-0
-$ sudo mongodb --replSet rs0 --dbpath /var/lib/mongodb-rs0-0 --port 27018
+$ sudo mongod --replSet rs0 --port 27017 --dbpath /var/lib/mongodb-rs0-0
+$ sudo mongod --replSet rs0 --port 27018 --dbpath /var/lib/mongodb-rs0-1
 ```
 - Run `rs.add('127.0.0.1:27018')` in mongo shell.
 
